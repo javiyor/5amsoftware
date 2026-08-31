@@ -1,0 +1,181 @@
+// ============================================================
+// 5AM Software — Hoja de estilos global
+// Bootstrap 5 + variables de marca desde CompanySettingsService
+// ============================================================
+
+// Variables de marca (se sobreescriben en runtime desde administración)
+:root {
+    --brand-primary: #2563eb;
+    --brand-secondary: #7c3aed;
+    --brand-ink: #0f172a;
+    --brand-body: #475569;
+    --brand-bg: #f8fafc;
+    --brand-radius: 0.75rem;
+    --brand-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+$brand-primary: var(--brand-primary);
+$brand-secondary: var(--brand-secondary);
+
+@import "bootstrap/scss/bootstrap";
+
+// ---------- Base ----------
+body {
+    background-color: var(--brand-bg);
+    color: var(--brand-body);
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+.navbar-brand,
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+    color: var(--brand-ink);
+    font-weight: 700;
+}
+
+// ---------- Utilidades ----------
+.text-gradient {
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.bg-brand-primary { background-color: var(--brand-primary); }
+.bg-brand-secondary { background-color: var(--brand-secondary); }
+.text-brand { color: var(--brand-primary); }
+.text-brand-secondary { color: var(--brand-secondary); }
+
+.btn-brand {
+    --bs-btn-bg: var(--brand-primary);
+    --bs-btn-border-color: var(--brand-primary);
+    --bs-btn-hover-bg: color-mix(in srgb, var(--brand-primary) 85%, #000);
+    --bs-btn-hover-border-color: color-mix(in srgb, var(--brand-primary) 85%, #000);
+    --bs-btn-active-bg: color-mix(in srgb, var(--brand-primary) 80%, #000);
+    --bs-btn-active-border-color: color-mix(in srgb, var(--brand-primary) 80%, #000);
+    --bs-btn-color: #fff;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-active-color: #fff;
+}
+
+.card {
+    border: 0;
+    border-radius: var(--brand-radius);
+    box-shadow: var(--brand-shadow);
+}
+
+// ---------- Auth ----------
+.auth-shell {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(900px 500px at 10% 0%, color-mix(in srgb, var(--brand-primary) 12%, transparent), transparent 60%),
+        radial-gradient(800px 500px at 100% 100%, color-mix(in srgb, var(--brand-secondary) 12%, transparent), transparent 60%),
+        var(--brand-bg);
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+}
+
+// ---------- Landing ----------
+.hero-section {
+    padding: 6rem 0;
+    background:
+        radial-gradient(1000px 600px at 80% -10%, color-mix(in srgb, var(--brand-primary) 14%, transparent), transparent 55%),
+        linear-gradient(180deg, #fff, var(--brand-bg));
+}
+
+.hero-section-compact {
+    padding: 3.5rem 0 4rem;
+}
+
+.navbar-landing {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.landing-section {
+    padding: 5rem 0;
+}
+
+.feature-card,
+.plan-card,
+.system-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover,
+.plan-card:hover,
+.system-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+}
+
+// ---------- Admin ----------
+.admin-sidebar {
+    min-height: 100vh;
+    background: var(--brand-ink);
+    color: #cbd5e1;
+}
+
+.admin-sidebar .nav-link {
+    color: #cbd5e1;
+    border-radius: 0.5rem;
+    padding: 0.55rem 0.9rem;
+}
+
+.admin-sidebar .nav-link:hover,
+.admin-sidebar .nav-link.active {
+    background: color-mix(in srgb, var(--brand-primary) 25%, transparent);
+    color: #fff;
+}
+
+.admin-content {
+    background: var(--brand-bg);
+    min-height: 100vh;
+}
+
+.stat-card .stat-value {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--brand-ink);
+}
+
+// ---------- Estados (badges coherentes) ----------
+.badge-soft-success { background: rgba(25, 135, 84, 0.12); color: #198754; }
+.badge-soft-danger { background: rgba(220, 53, 69, 0.12); color: #dc3545; }
+.badge-soft-warning { background: rgba(255, 193, 7, 0.16); color: #b45309; }
+.badge-soft-info { background: rgba(13, 202, 240, 0.14); color: #0c5460; }
+.badge-soft-secondary { background: rgba(108, 117, 125, 0.14); color: #495057; }
+.badge-soft-primary { background: rgba(37, 99, 235, 0.12); color: #1d4ed8; }
+
+// ---------- Misc ----------
+.table > :not(caption) > * > * {
+    vertical-align: middle;
+}
+
+.footer-landing {
+    background: var(--brand-ink);
+    color: #94a3b8;
+}
+
+.footer-landing a {
+    color: #cbd5e1;
+    text-decoration: none;
+}
+
+.footer-landing a:hover {
+    color: #fff;
+}
+
+@media (max-width: 991.98px) {
+    .admin-sidebar {
+        min-height: auto;
+    }
+}
