@@ -3,44 +3,55 @@
 @section('title', 'Software que simplifica la gestión de tu empresa')
 
 @section('landing-content')
-    {{-- HERO --}}
-    <section class="hero-section">
-        <div class="container">
+    {{-- HERO VISTOSO --}}
+    <section class="hero-section position-relative overflow-hidden" style="background: radial-gradient(900px 500px at 15% 10%, rgba(245,158,11,0.18), transparent 60%), radial-gradient(800px 600px at 90% 20%, rgba(37,99,235,0.15), transparent 60%), linear-gradient(180deg, #0f172a 0%, #1e293b 100%); padding: 5rem 0 6rem;">
+        <div class="container position-relative">
             <div class="row align-items-center g-5">
-                <div class="col-lg-7">
-                    <span class="badge rounded-pill text-bg-light border mb-3">Sistemas informáticos para tu negocio</span>
-                    <h1 class="display-4 fw-bold mb-3">
-                        Software que simplifica la <span class="text-gradient">gestión de tu empresa</span>
+                <div class="col-lg-7 text-white">
+                    <div class="d-inline-flex align-items-center gap-2 bg-white bg-opacity-10 border border-white border-opacity-10 rounded-pill px-3 py-1 mb-3">
+                        <span class="bg-warning rounded-circle" style="width:8px;height:8px;display:inline-block;"></span>
+                        <span class="small text-white-50">Sistemas informáticos para tu negocio</span>
+                    </div>
+                    <div class="mb-4">
+                        <img src="{{ asset('assets/brand/logo.jpeg') }}" alt="5AM Software" style="height: 72px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); background: white; padding: 6px;" onerror="this.src='{{ asset('storage/company/logo.jpeg') }}'">
+                    </div>
+                    <h1 class="display-4 fw-bold mb-3 text-white">
+                        Software que simplifica la <span style="background: linear-gradient(135deg, #f59e0b, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">gestión de tu empresa</span>
                     </h1>
-                    <p class="lead text-muted mb-4">
+                    <p class="lead mb-4" style="color: #cbd5e1;">
                         Vendemos, licenciamos y mantenemos sistemas informáticos diseñados para que tu organización
                         trabaje más rápido, con menos errores y con total control.
                     </p>
                     <div class="d-flex flex-wrap gap-3">
-                        <a href="#sistemas" class="btn btn-brand btn-lg px-4">VER SISTEMAS</a>
-                        <a href="#demo" class="btn btn-outline-dark btn-lg px-4">PEDIR DEMO GRATIS</a>
+                        <a href="#sistemas" class="btn btn-lg px-4 fw-semibold" style="background: linear-gradient(135deg, #f59e0b, #fbbf24); border: 0; color: #0f172a;">VER SISTEMAS</a>
+                        <a href="#demo" class="btn btn-outline-light btn-lg px-4">PEDIR DEMO GRATIS</a>
+                    </div>
+                    <div class="d-flex gap-4 mt-4 small" style="color: #94a3b8;">
+                        <span>&#10003; Soporte incluido</span>
+                        <span>&#10003; Licencias seguras</span>
+                        <span>&#10003; Implementación ágil</span>
                     </div>
                 </div>
                 <div class="col-lg-5 d-none d-lg-block">
-                    <div class="card p-4 bg-white">
+                    <div class="card p-4 border-0" style="background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); border-radius: 1rem; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
                         <div class="d-flex align-items-center gap-3 mb-3">
-                            <div class="rounded-3 bg-brand-primary bg-opacity-10 p-3 text-brand fs-4">&#9881;</div>
+                            <div class="rounded-3 d-flex align-items-center justify-content-center" style="width:48px;height:48px;background: rgba(245,158,11,0.15); color: #f59e0b; font-size: 1.4rem;">&#9881;</div>
                             <div>
-                                <div class="fw-semibold">Soporte incluido</div>
+                                <div class="fw-semibold" style="color: #0f172a;">Soporte incluido</div>
                                 <div class="small text-muted">Acompañamiento en cada etapa</div>
                             </div>
                         </div>
                         <div class="d-flex align-items-center gap-3 mb-3">
-                            <div class="rounded-3 bg-brand-secondary bg-opacity-10 p-3 text-brand-secondary fs-4">&#128274;</div>
+                            <div class="rounded-3 d-flex align-items-center justify-content-center" style="width:48px;height:48px;background: rgba(37,99,235,0.12); color: #2563eb; font-size: 1.4rem;">&#128274;</div>
                             <div>
-                                <div class="fw-semibold">Licencias seguras</div>
+                                <div class="fw-semibold" style="color: #0f172a;">Licencias seguras</div>
                                 <div class="small text-muted">Control y monitoreo permanente</div>
                             </div>
                         </div>
                         <div class="d-flex align-items-center gap-3">
-                            <div class="rounded-3 bg-success bg-opacity-10 p-3 text-success fs-4">&#10003;</div>
+                            <div class="rounded-3 d-flex align-items-center justify-content-center" style="width:48px;height:48px;background: rgba(16,185,129,0.12); color: #10b981; font-size: 1.4rem;">&#10003;</div>
                             <div>
-                                <div class="fw-semibold">Implementación ágil</div>
+                                <div class="fw-semibold" style="color: #0f172a;">Implementación ágil</div>
                                 <div class="small text-muted">De la demo a la operación en poco tiempo</div>
                             </div>
                         </div>
