@@ -16,6 +16,11 @@
     @if (! empty($company['company_logo']))
         <meta property="og:image" content="{{ asset('storage/' . $company['company_logo']) }}">
     @endif
+    @if (! empty($company['company_logo']))
+        <link rel="icon" type="image/jpeg" href="{{ asset('storage/' . $company['company_logo']) }}">
+    @else
+        <link rel="icon" type="image/jpeg" href="{{ asset('assets/brand/logo.jpeg') }}">
+    @endif
     <meta name="twitter:card" content="summary_large_image">
     <title>@yield('title', config('app.name'))</title>
     @vite(['resources/css/app.scss', 'resources/js/app.js'])

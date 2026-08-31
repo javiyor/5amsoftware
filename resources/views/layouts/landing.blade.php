@@ -33,7 +33,11 @@
         <div class="container">
             <div class="row gy-4">
                 <div class="col-md-4">
-                    <span class="fw-bold fs-5 text-white">{{ $company['company_name'] ?? config('app.name') }}</span>
+                    @if (! empty($company['company_logo']))
+                        <img src="{{ asset('storage/' . $company['company_logo']) }}" alt="{{ $company['company_name'] ?? config('app.name') }}" height="40" style="max-width: 180px; object-fit: contain;" class="mb-2" onerror="this.onerror=null;this.src='{{ asset('assets/brand/logo.jpeg') }}'">
+                    @else
+                        <img src="{{ asset('assets/brand/logo.jpeg') }}" alt="{{ $company['company_name'] ?? config('app.name') }}" height="40" style="max-width: 180px; object-fit: contain;" class="mb-2">
+                    @endif
                     <p class="mt-2 small">
                         {{ $company['company_footer_text'] ?? 'Software que simplifica la gestión de tu empresa.' }}
                     </p>

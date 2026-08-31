@@ -23,11 +23,11 @@ class CompanySettingsSeeder extends Seeder
             'company_website' => '',
         ],
         'branding' => [
-            'company_logo' => '',
-            'company_logo_dark' => '',
-            'company_favicon' => '',
-            'brand_primary_color' => '#2563eb',
-            'brand_secondary_color' => '#7c3aed',
+            'company_logo' => 'company/logo.jpeg',
+            'company_logo_dark' => 'company/logo.jpeg',
+            'company_favicon' => 'company/logo.jpeg',
+            'brand_primary_color' => '#0f172a',
+            'brand_secondary_color' => '#2563eb',
             'company_footer_text' => 'Software que simplifica la gestión de tu empresa.',
         ],
         'social' => [

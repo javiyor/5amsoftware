@@ -5,9 +5,13 @@
 @section('content')
     <div class="d-lg-flex">
         <aside class="admin-sidebar p-3 p-lg-4 col-lg-2 d-flex flex-column">
-            <a href="{{ route('admin.dashboard') }}" class="navbar-brand text-white fw-bold mb-4 text-decoration-none">
-                {{ $company['company_name'] ?? config('app.name') }}
-                <span class="d-block small fw-normal text-secondary">Panel de administración</span>
+            <a href="{{ route('admin.dashboard') }}" class="navbar-brand mb-4 text-decoration-none d-flex align-items-center gap-2">
+                @if (! empty($company['company_logo']))
+                    <img src="{{ asset('storage/' . $company['company_logo']) }}" alt="{{ $company['company_name'] ?? config('app.name') }}" height="36" style="max-width: 160px; object-fit: contain;" onerror="this.onerror=null;this.src='{{ asset('assets/brand/logo.jpeg') }}'">
+                @else
+                    <img src="{{ asset('assets/brand/logo.jpeg') }}" alt="{{ $company['company_name'] ?? config('app.name') }}" height="36" style="max-width: 160px; object-fit: contain;">
+                @endif
+                <span class="d-block small fw-normal text-secondary ms-1">Panel de administración</span>
             </a>
 
             <ul class="nav flex-column gap-1">
