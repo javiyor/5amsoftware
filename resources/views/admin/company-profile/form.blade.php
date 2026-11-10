@@ -32,10 +32,10 @@
                     <div class="card-header bg-white"><strong>Datos personales y profesionales</strong></div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label class="form-label" for="company_name">Nombre / nombre comercial *</label>
-                            <input id="company_name" name="company_name" value="{{ old('company_name', $settings['company_name'] ?? '') }}"
-                                   class="form-control @error('company_name') is-invalid @enderror" required maxlength="180">
-                            @error('company_name')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                            <label class="form-label" for="company_profile_name">Nombre *</label>
+                            <input id="company_profile_name" name="company_profile_name" value="{{ old('company_profile_name', $settings['company_profile_name'] ?? '') }}"
+                                   class="form-control @error('company_profile_name') is-invalid @enderror" required maxlength="180">
+                            @error('company_profile_name')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="company_cuit">CUIT</label>

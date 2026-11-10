@@ -31,7 +31,7 @@ class CompanyProfileController extends Controller
     public function update(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'company_name' => ['required', 'string', 'max:180'],
+            'company_profile_name' => ['required', 'string', 'max:180'],
             'company_cuit' => ['nullable', 'string', 'max:30'],
             'company_address' => ['nullable', 'string', 'max:255'],
             'company_profession' => ['nullable', 'string', 'max:180'],
@@ -44,7 +44,7 @@ class CompanyProfileController extends Controller
         $oldPhoto = $this->settings->get('company_profile_photo');
         $oldVideo = $this->settings->get('company_promo_video');
 
-        foreach (['company_name', 'company_cuit', 'company_address', 'company_profession', 'company_promo_video_url'] as $key) {
+        foreach (['company_profile_name', 'company_cuit', 'company_address', 'company_profession', 'company_promo_video_url'] as $key) {
             $this->settings->set($key, $validated[$key] ?? '', 'profile');
         }
 
@@ -80,7 +80,7 @@ class CompanyProfileController extends Controller
         }
 
         $this->audit->log('updated', 'company_profile', null, null, [
-            'company_name' => $validated['company_name'],
+            'company_profile_name' => $validated['company_profile_name'],
             'company_cuit' => $validated['company_cuit'] ?? '',
             'company_address' => $validated['company_address'] ?? '',
             'company_profession' => $validated['company_profession'] ?? '',

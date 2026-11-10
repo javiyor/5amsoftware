@@ -126,7 +126,7 @@
     </section>
 
     {{-- PRESENTACIÓN Y VIDEO INSTITUCIONAL --}}
-    @if (! empty($company['company_profile_photo']) || ! empty($company['company_profession']) || ! empty($company['company_cuit']) || ! empty($company['company_address']) || ! empty($company['company_promo_video']) || ! empty($company['company_promo_video_url']))
+    @if (! empty($company['company_profile_photo']) || ! empty($company['company_profile_name']) || ! empty($company['company_profession']) || ! empty($company['company_cuit']) || ! empty($company['company_address']) || ! empty($company['company_promo_video']) || ! empty($company['company_promo_video_url']))
         <section class="py-5" id="conocenos" style="background: linear-gradient(180deg, #f8fafc, #fff);">
             <div class="container py-4">
                 <div class="row align-items-center g-5">
@@ -139,7 +139,7 @@
                                      class="rounded-circle flex-shrink-0" style="width:92px;height:92px;object-fit:cover;border:3px solid #fff;box-shadow:0 8px 24px rgba(15,23,42,.16);">
                             @endif
                             <div>
-                                <h3 class="h4 fw-bold mb-1" style="color:#0f172a;">{{ $company['company_name'] ?? '5AM Software' }}</h3>
+                                <h3 class="h4 fw-bold mb-1" style="color:#0f172a;">{{ $company['company_profile_name'] ?? $company['company_name'] ?? '5AM Software' }}</h3>
                                 @if (! empty($company['company_profession']))
                                     <div class="fw-semibold" style="color:#b45309;">{{ $company['company_profession'] }}</div>
                                 @endif

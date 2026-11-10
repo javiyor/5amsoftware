@@ -30,6 +30,7 @@ class CompanySettingsService
         'company_logo_dark' => '',
         'company_favicon' => '',
         'company_profile_photo' => '',
+        'company_profile_name' => '',
         'company_promo_video' => '',
         'company_promo_video_url' => '',
         'company_profession' => '',
