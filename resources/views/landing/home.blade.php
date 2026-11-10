@@ -125,6 +125,60 @@
         </div>
     </section>
 
+    {{-- PRESENTACIÓN Y VIDEO INSTITUCIONAL --}}
+    @if (! empty($company['company_profile_photo']) || ! empty($company['company_profession']) || ! empty($company['company_cuit']) || ! empty($company['company_address']) || ! empty($company['company_promo_video']) || ! empty($company['company_promo_video_url']))
+        <section class="py-5" id="conocenos" style="background: linear-gradient(180deg, #f8fafc, #fff);">
+            <div class="container py-4">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-5">
+                        <span class="badge rounded-pill px-3 py-2 mb-3" style="background:rgba(245,158,11,.12);color:#b45309;border:1px solid rgba(245,158,11,.2);">CONOCENOS</span>
+                        <h2 class="fw-bold mb-3" style="color:#0f172a;">Tecnología con respaldo profesional</h2>
+                        <div class="d-flex align-items-start gap-3 mb-4">
+                            @if (! empty($company['company_profile_photo']))
+                                <img src="{{ asset('storage/' . $company['company_profile_photo']) }}" alt="{{ $company['company_name'] ?? 'Perfil profesional' }}"
+                                     class="rounded-circle flex-shrink-0" style="width:92px;height:92px;object-fit:cover;border:3px solid #fff;box-shadow:0 8px 24px rgba(15,23,42,.16);">
+                            @endif
+                            <div>
+                                <h3 class="h4 fw-bold mb-1" style="color:#0f172a;">{{ $company['company_name'] ?? '5AM Software' }}</h3>
+                                @if (! empty($company['company_profession']))
+                                    <div class="fw-semibold" style="color:#b45309;">{{ $company['company_profession'] }}</div>
+                                @endif
+                            </div>
+                        </div>
+                        <dl class="row small mb-0">
+                            @if (! empty($company['company_cuit']))
+                                <dt class="col-sm-3" style="color:#64748b;">CUIT</dt>
+                                <dd class="col-sm-9 fw-semibold" style="color:#0f172a;">{{ $company['company_cuit'] }}</dd>
+                            @endif
+                            @if (! empty($company['company_address']))
+                                <dt class="col-sm-3" style="color:#64748b;">Dirección</dt>
+                                <dd class="col-sm-9" style="color:#334155;">{{ $company['company_address'] }}</dd>
+                            @endif
+                        </dl>
+                    </div>
+                    <div class="col-lg-7">
+                        @if (! empty($company['company_promo_video']) || ! empty($company['company_promo_video_url']))
+                            <div class="p-2 rounded-4" style="background:linear-gradient(135deg,#f59e0b,#2563eb);box-shadow:0 20px 50px rgba(15,23,42,.16);">
+                                <div class="bg-white rounded-4 p-2">
+                                    @include('partials.promo-video', [
+                                        'videoPath' => $company['company_promo_video'] ?? '',
+                                        'videoUrl' => $company['company_promo_video_url'] ?? '',
+                                        'title' => 'Presentación de ' . ($company['company_name'] ?? '5AM Software'),
+                                    ])
+                                </div>
+                            </div>
+                        @else
+                            <div class="rounded-4 p-5 text-center" style="background:#0f172a;color:#cbd5e1;">
+                                <div class="fs-1 mb-2" style="color:#fbbf24;">5AM</div>
+                                <p class="mb-0">Experiencia, compromiso y tecnología para acompañar el crecimiento de tu empresa.</p>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
     {{-- PROCESO --}}
     <section class="py-5" id="proceso" style="background: #f8fafc;">
         <div class="container py-4">

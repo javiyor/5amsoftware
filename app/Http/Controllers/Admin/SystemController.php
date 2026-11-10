@@ -13,6 +13,7 @@ use App\Services\Support\AuditService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SystemController extends Controller
 {
@@ -49,7 +50,11 @@ class SystemController extends Controller
 
     public function store(StoreSystemRequest $request): RedirectResponse
     {
-        $system = System::create($request->validated());
+        $data = $request->validated();
+        unset($data['promo_video'], $data['promo_video_url'], $data['remove_promo_video']);
+
+        $system = System::create($data);
+        $this->savePromoVideo($request, $system);
 
         $this->audit->model('created', $system);
 
@@ -72,7 +77,11 @@ class SystemController extends Controller
 
     public function update(UpdateSystemRequest $request, System $system): RedirectResponse
     {
-        $system->update($request->validated());
+        $data = $request->validated();
+        unset($data['promo_video'], $data['promo_video_url'], $data['remove_promo_video']);
+
+        $system->update($data);
+        $this->savePromoVideo($request, $system);
 
         $this->audit->model('updated', $system);
 
@@ -119,5 +128,39 @@ class SystemController extends Controller
         return redirect()
             ->route('admin.systems.show', $system)
             ->with('status', 'Característica eliminada.');
+    }
+
+    private function savePromoVideo(Request $request, System $system): void
+    {
+        $oldPath = $system->promo_video_path;
+
+        if ($request->hasFile('promo_video')) {
+            $path = $request->file('promo_video')->store('systems/videos', 'public');
+            $system->update(['promo_video_path' => $path, 'promo_video_url' => null]);
+
+            if ($oldPath) {
+                Storage::disk('public')->delete($oldPath);
+            }
+
+            return;
+        }
+
+        if ($request->boolean('remove_promo_video')) {
+            $system->update(['promo_video_path' => null, 'promo_video_url' => null]);
+
+            if ($oldPath) {
+                Storage::disk('public')->delete($oldPath);
+            }
+
+            return;
+        }
+
+        if (filled($request->input('promo_video_url'))) {
+            $system->update(['promo_video_path' => null, 'promo_video_url' => $request->input('promo_video_url')]);
+
+            if ($oldPath) {
+                Storage::disk('public')->delete($oldPath);
+            }
+        }
     }
 }

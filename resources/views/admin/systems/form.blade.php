@@ -5,7 +5,7 @@
 @section('page-title', $system->exists ? 'Editar sistema' : 'Nuevo sistema')
 
 @section('admin-content')
-    <form method="POST" action="{{ $system->exists ? route('admin.systems.update', $system) : route('admin.systems.store') }}">
+    <form method="POST" enctype="multipart/form-data" action="{{ $system->exists ? route('admin.systems.update', $system) : route('admin.systems.store') }}">
         @csrf
         @if ($system->exists)
             @method('PUT')
@@ -47,6 +47,40 @@
                 <input type="number" step="0.01" min="0" id="installation_price" name="installation_price" value="{{ old('installation_price', $system->installation_price) }}"
                        class="form-control @error('installation_price') is-invalid @enderror">
                 @error('installation_price')<div class="invalid-feedback">{{ $message }}</div>@enderror
+            </div>
+            <div class="col-12">
+                <div class="border rounded-3 p-3">
+                    <h2 class="h6 mb-1">Video explicativo del producto</h2>
+                    <p class="small text-muted">Se mostrará en la página pública del sistema. Pegá un enlace de YouTube/Vimeo o subí un video.</p>
+                    @if ($system->promo_video_path || $system->promo_video_url)
+                        <div class="mb-3">
+                            @include('partials.promo-video', [
+                                'videoPath' => $system->promo_video_path,
+                                'videoUrl' => $system->promo_video_url,
+                                'title' => $system->name,
+                            ])
+                            <label class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" name="remove_promo_video" value="1" @checked(old('remove_promo_video'))>
+                                <span class="form-check-label">Quitar video actual</span>
+                            </label>
+                        </div>
+                    @endif
+                    <div class="row g-3">
+                        <div class="col-lg-6">
+                            <label class="form-label" for="promo_video_url">Enlace a YouTube, Vimeo o video público</label>
+                            <input id="promo_video_url" type="url" name="promo_video_url" value="{{ old('promo_video_url', $system->promo_video_url) }}"
+                                   class="form-control @error('promo_video_url') is-invalid @enderror" placeholder="https://youtu.be/...">
+                            @error('promo_video_url')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-label" for="promo_video">O subir archivo</label>
+                            <input id="promo_video" type="file" name="promo_video" accept="video/mp4,video/webm,video/quicktime,.mp4,.webm,.mov"
+                                   class="form-control @error('promo_video') is-invalid @enderror">
+                            <div class="form-text">MP4, WebM o MOV. Máximo 40 MB.</div>
+                            @error('promo_video')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-4">
                 <label class="form-label" for="sort_order">Orden</label>

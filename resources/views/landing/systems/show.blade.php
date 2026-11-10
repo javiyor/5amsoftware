@@ -41,6 +41,22 @@
         </div>
     </section>
 
+    @if ($system->promo_video_path || $system->promo_video_url)
+        <section class="py-5 bg-white">
+            <div class="container" style="max-width: 980px;">
+                <div class="text-center mb-4">
+                    <span class="badge rounded-pill px-3 py-2 mb-3" style="background:rgba(245,158,11,.12);color:#b45309;border:1px solid rgba(245,158,11,.2);">CONOCÉ EL PRODUCTO</span>
+                    <h2 class="h3 fw-bold mb-0">{{ $system->name }} en video</h2>
+                </div>
+                @include('partials.promo-video', [
+                    'videoPath' => $system->promo_video_path,
+                    'videoUrl' => $system->promo_video_url,
+                    'title' => 'Video explicativo de ' . $system->name,
+                ])
+            </div>
+        </section>
+    @endif
+
     <section class="landing-section">
         <div class="container">
             <div class="row g-5">

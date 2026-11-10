@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CompanyProfileController;
 use App\Http\Controllers\Admin\ContractController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
@@ -16,11 +17,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Public\DemoRequestController;
 use App\Http\Controllers\Public\SeoController;
 use App\Http\Controllers\Public\SystemController;
+use App\Http\Middleware\TrackPublicVisits;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->middleware(TrackPublicVisits::class)->name('home');
 
-Route::get('/sistemas/{system:slug}', [SystemController::class, 'show'])->name('systems.show');
+Route::get('/sistemas/{system:slug}', [SystemController::class, 'show'])->middleware(TrackPublicVisits::class)->name('systems.show');
 Route::post('/demos', [DemoRequestController::class, 'store'])
     ->middleware('throttle:demo')
     ->name('demo.store');
@@ -70,6 +72,9 @@ Route::prefix('admin')
     ->name('admin.')
     ->group(function (): void {
         Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+        Route::get('company-profile', [CompanyProfileController::class, 'edit'])->name('company-profile.edit');
+        Route::put('company-profile', [CompanyProfileController::class, 'update'])->name('company-profile.update');
 
         Route::resource('customers', CustomerController::class);
 

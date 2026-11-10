@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 #[Fillable([
     'name', 'slug', 'short_description', 'description', 'main_image',
     'price_from', 'installation_price', 'is_featured', 'is_published',
-    'sort_order', 'seo_title', 'seo_description',
+    'sort_order', 'seo_title', 'seo_description', 'promo_video_path', 'promo_video_url',
 ])]
 class System extends Model
 {

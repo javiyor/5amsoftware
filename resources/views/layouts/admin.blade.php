@@ -44,7 +44,9 @@
                 <li class="nav-item"><a class="nav-link disabled" href="#">Landing</a></li>
 
                 <li class="nav-item mt-3 text-uppercase small text-secondary fw-semibold px-2">Configuración</li>
-                <li class="nav-item"><a class="nav-link disabled" href="#">Empresa</a></li>
+                <li class="nav-item">
+                    <a class="nav-link @if (request()->routeIs('admin.company-profile.*')) active @endif" href="{{ route('admin.company-profile.edit') }}">Empresa</a>
+                </li>
                 <li class="nav-item"><a class="nav-link disabled" href="#">Usuarios</a></li>
                 <li class="nav-item"><a class="nav-link disabled" href="#">Roles</a></li>
                 <li class="nav-item"><a class="nav-link disabled" href="#">Parámetros</a></li>
