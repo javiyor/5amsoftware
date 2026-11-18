@@ -23,6 +23,9 @@
                 <li class="nav-item">
                     <a class="nav-link @if (request()->routeIs('admin.demos.*')) active @endif" href="{{ route('admin.demos.index') }}">Demos</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link @if (request()->routeIs('admin.appointments.*')) active @endif" href="{{ route('admin.appointments.index') }}">Citas</a>
+                </li>
 
                 <li class="nav-item mt-3 text-uppercase small text-secondary fw-semibold px-2">Clientes</li>
                 <li class="nav-item">

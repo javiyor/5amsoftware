@@ -1,0 +1,23 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Enums;
+
+enum AppointmentStatus: string
+{
+    case Pending = 'pending';
+    case Confirmed = 'confirmed';
+    case Cancelled = 'cancelled';
+    case Completed = 'completed';
+
+    public function label(): string
+    {
+        return match ($this) {
+            self::Pending => 'Pendiente',
+            self::Confirmed => 'Confirmada',
+            self::Cancelled => 'Cancelada',
+            self::Completed => 'Completada',
+        };
+    }
+}

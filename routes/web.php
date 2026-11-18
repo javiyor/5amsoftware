@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AppointmentController as AdminAppointmentController;
 use App\Http\Controllers\Admin\CompanyProfileController;
 use App\Http\Controllers\Admin\ContractController;
 use App\Http\Controllers\Admin\CustomerController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\Client\AppointmentController as ClientAppointmentController;
 use App\Http\Controllers\Client\DashboardController as ClientDashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Public\DemoRequestController;
@@ -73,6 +75,11 @@ Route::prefix('admin')
     ->group(function (): void {
         Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
 
+        Route::get('appointments', [AdminAppointmentController::class, 'index'])->name('appointments.index');
+        Route::get('appointments/schedule', [AdminAppointmentController::class, 'editSchedule'])->name('appointments.schedule');
+        Route::put('appointments/schedule', [AdminAppointmentController::class, 'updateSchedule'])->name('appointments.schedule.update');
+        Route::patch('appointments/{appointment}/status', [AdminAppointmentController::class, 'updateStatus'])->name('appointments.status');
+
         Route::get('company-profile', [CompanyProfileController::class, 'edit'])->name('company-profile.edit');
         Route::put('company-profile', [CompanyProfileController::class, 'update'])->name('company-profile.update');
 
@@ -98,4 +105,6 @@ Route::prefix('cliente')
     ->name('client.')
     ->group(function (): void {
         Route::get('/', [ClientDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/citas', [ClientAppointmentController::class, 'index'])->name('appointments.index');
+        Route::post('/citas', [ClientAppointmentController::class, 'store'])->name('appointments.store');
     });

@@ -13,6 +13,7 @@
             <div class="collapse navbar-collapse" id="clientNav">
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
                     <li class="nav-item"><a class="nav-link" href="{{ route('client.dashboard') }}">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link @if (request()->routeIs('client.appointments.*')) active @endif" href="{{ route('client.appointments.index') }}">Mis citas</a></li>
                     <li class="nav-item"><a class="nav-link disabled" href="#">Mis sistemas</a></li>
                     <li class="nav-item"><a class="nav-link disabled" href="#">Cuotas</a></li>
                     <li class="nav-item"><a class="nav-link disabled" href="#">Pagos</a></li>
